@@ -1,0 +1,27 @@
+services:
+  - type: web
+    name: bot-placas
+    env: python
+    buildCommand: docker build -t bot-placas .
+    startCommand: python bot_rapido_corrigido.py
+    envVars:
+      - key: API_ID
+        fromEnvVar: API_ID
+      - key: API_HASH
+        fromEnvVar: API_HASH
+      - key: BOT_TOKEN
+        fromEnvVar: BOT_TOKEN
+      - key: ADMIN_USER_ID
+        fromEnvVar: ADMIN_USER_ID
+      - key: CONTATO_OPERACAO
+        fromEnvVar: CONTATO_OPERACAO
+      - key: CREDENTIALS_PATH
+        fromEnvVar: CREDENTIALS_PATH
+      - key: SPREADSHEET_NAME
+        fromEnvVar: SPREADSHEET_NAME
+    healthCheckPath: /health
+    instanceCount: 1
+    instanceSize: nano
+    autoSleep: true
+    autoSleepTimeout: 15
+    autoStart: true
